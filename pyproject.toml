@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "trinity dashboard"
+version = "0.1.0"
+description = "\"Testando funcionalidades da biblioteca Dash.plotly\""
+authors = ["Rodolfo Lima"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.6"
+pandas = "2.0.3"
+dash = "2.11.1"
+dash-bootstrap-components = "1.4.2"
+plotly-express = "0.4.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
