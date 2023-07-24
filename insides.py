@@ -15,11 +15,19 @@ app.layout = html.Div(
     children=[
         html.H1(
             children="Filtragem de Valores",
-            style={"textAlign": "center", "color": "#4169E1"},
+            style={
+                "textAlign": "center",
+                "color": "#4169E1",
+                "backgroundColor": "#121212",
+            },
         ),
         html.H2(
-            "Aplicando os gráficos de barras",
-            style={"textAlign": "center", "color": "#4169E1"},
+            "Aplicando os gráficos e visualizações",
+            style={
+                "textAlign": "center",
+                "color": "#4169E1",
+                "backgroundColor": "#121212",
+            },
         ),
         dcc.Dropdown(
             id="dark_mode",
@@ -38,145 +46,197 @@ app.layout = html.Div(
                 "textAlign": "center",
                 "position": "absolute",
                 "right": "10px",
-                "top": "50px",
+                "top": "10px",
             },
         ),
+        # Linha Dropdowns
         html.Div(
-            children=[
-                html.H3("História", style={"color": "#4169E1", "fontFamily": "Arial"}),
-                dcc.Dropdown(
-                    id="filtro_historia",
-                    options=historia,
-                    value="Todos",
-                    style={
-                        "font-family": "arial",
-                        "font-size": "1.2em",
-                        "marginBottom": 10,
-                        "marginTop": 2,
-                        "textAlign": "center",
-                        "width": "200px",
-                    },
-                ),
-                html.H3("Garantias", style={"color": "#4169E1", "fontFamily": "Arial"}),
-                dcc.Dropdown(
-                    id="filtro_garantias",
-                    options=garantias,
-                    value="Todos",
-                    style={
-                        "font-family": "arial",
-                        "font-size": "1.2em",
-                        "marginBottom": 10,
-                        "marginTop": 2,
-                        "text-align": "center",
-                        "width": "200px",
-                    },
-                ),
-                html.H3(
-                    "Renda",
-                    style={
-                        "color": "#4169E1",
-                        "fontFamily": "Arial",
-                    },
-                ),
-                dcc.Dropdown(
-                    id="filtro_renda",
-                    options=renda,
-                    value="Todos",
-                    style={
-                        "font-family": "arial",
-                        "font-size": "1.2em",
-                        "marginBottom": 10,
-                        "marginTop": 2,
-                        "text-align": "center",
-                        "width": "200px",
-                    },
-                ),
-            ]
-        ),
-        html.Div(
-            children=[
-                dcc.Graph(
-                    id="bar-chart",
-                    config={"displayModeBar": False},
-                    figure={
-                        "data": [bar_data],
-                        "layout": {
-                            "title": "Gráficos de Barras",
-                            "plot_bgcolor": "#000000",
-                            "paper_bgcolor": "#121212",
-                        },
-                    },
-                    style={
-                        "color": "white",
-                        "width": "50%",
-                        "display": "inline-block",
-                        "backgroundColor": "#f0f0f0",
-                    },
-                ),
-                dcc.Graph(
-                    id="pizza-chart",
-                    config={"displayModeBar": False},
-                    figure={
-                        "data": [pie_data],
-                        "layout": {
-                            "title": "Gráficos de Pizza",
-                            "plot_bgcolor": "white",
-                            "paper_bgcolor": "#121212",
-                        },
-                    },
-                    style={
-                        "color": "white",
-                        "width": "50%",
-                        "display": "inline-block",
-                        "backgroundColor": "#121212",
-                    },
-                ),
-            ]
-        ),
-        html.Div(
+            key="dropdowns",
             children=[
                 dbc.Row(
-                    dbc.Col(
-                        html.Div(
-                            children=[
-                                html.H3(
-                                    "Tabela com Dados da Base de Dados",
-                                    style={
-                                        "textAlign": "center",
-                                        "color": "white",
-                                    },
-                                ),
-                                dash_table.DataTable(
-                                    id="tabela-dados",
-                                    columns=[
-                                        {"name": col, "id": col} for col in df.columns
-                                    ],
-                                    data=df.to_dict("records"),
-                                    style_table={
-                                        "margin": "auto",
-                                        "border": "2px solid black",
-                                        "border-collapse": "collapse",
-                                    },
-                                    style_cell={
-                                        "padding": "5px",
-                                        "backgroundColor": "Grey",
-                                    },
-                                    style_header={
-                                        "backgroundColor": "Black",
-                                        "fontWeight": "bold",
-                                        "color": "White",
-                                    },
-                                    page_size=5,
-                                ),
-                            ]
+                    [
+                        dbc.Col(
+                            html.Div(
+                                children=[
+                                    html.H3(
+                                        "História",
+                                        style={
+                                            "color": "#4169E1",
+                                            "fontFamily": "Arial",
+                                            "font-size": "1.2em",
+                                        },
+                                    ),
+                                    dcc.Dropdown(
+                                        id="filtro_historia",
+                                        options=historia,
+                                        value="Todos",
+                                        style={
+                                            "font-family": "arial",
+                                            "font-size": "1.0em",
+                                            "marginBottom": 10,
+                                            "marginTop": 2,
+                                            "textAlign": "center",
+                                            "width": "150px",
+                                            "left": "1px",
+                                        },
+                                    ),
+                                ]
+                            ),
+                            width=3,
                         ),
-                        width=6,
-                    )
-                )
-            ]
+                        dbc.Col(
+                            html.Div(
+                                children=[
+                                    html.H3(
+                                        "Garantias",
+                                        style={
+                                            "color": "#4169E1",
+                                            "fontFamily": "Arial",
+                                            "font-size": "1.2em",
+                                        },
+                                    ),
+                                    dcc.Dropdown(
+                                        id="filtro_garantias",
+                                        options=garantias,
+                                        value="Todos",
+                                        style={
+                                            "font-family": "arial",
+                                            "font-size": "1.0em",
+                                            "marginBottom": 10,
+                                            "marginTop": 2,
+                                            "textAlign": "center",
+                                            "width": "150px",
+                                            "right": "1px",
+                                        },
+                                    ),
+                                ]
+                            ),
+                            width=3,
+                        ),
+                        dbc.Col(
+                            html.Div(
+                                children=[
+                                    html.H3(
+                                        "Renda",
+                                        style={
+                                            "color": "#4169E1",
+                                            "fontFamily": "Arial",
+                                            "font-size": "1.2em",
+                                        },
+                                    ),
+                                    dcc.Dropdown(
+                                        id="filtro_renda",
+                                        options=renda,
+                                        value="Todos",
+                                        style={
+                                            "font-family": "arial",
+                                            "font-size": "1.0em",
+                                            "marginBottom": 10,
+                                            "marginTop": 2,
+                                            "textAlign": "center",
+                                            "width": "150px",
+                                            "right": "1px",
+                                        },
+                                    ),
+                                ]
+                            ),
+                            width=3,
+                        ),
+                    ],
+                    justify="center",
+                ),
+                html.Div(
+                    children=[
+                        dcc.Graph(
+                            id="bar-chart",
+                            config={"displayModeBar": False},
+                            figure={
+                                "data": [bar_data],
+                                "layout": {
+                                    "title": "Gráficos de Barras",
+                                    "plot_bgcolor": "#000000",
+                                    "paper_bgcolor": "#121212",
+                                    "height": 400,
+                                    "width": 400,
+                                },
+                            },
+                            style={
+                                "color": "white",
+                                "width": "50%",
+                                "display": "inline-block",
+                                "backgroundColor": "#f0f0f0",
+                            },
+                        ),
+                        dcc.Graph(
+                            id="pizza-chart",
+                            config={"displayModeBar": False},
+                            figure={
+                                "data": [pie_data],
+                                "layout": {
+                                    "title": "Gráficos de Pizza",
+                                    "plot_bgcolor": "white",
+                                    "paper_bgcolor": "#121212",
+                                    "height": 400,
+                                    "width": 400,
+                                },
+                            },
+                            style={
+                                "color": "white",
+                                "width": "50%",
+                                "display": "inline-block",
+                                "backgroundColor": "#121212",
+                            },
+                        ),
+                    ]
+                ),
+                html.Div(
+                    children=[
+                        dbc.Row(
+                            dbc.Col(
+                                html.Div(
+                                    children=[
+                                        html.H3(
+                                            "Tabela com Dados da Base de Dados",
+                                            style={
+                                                "textAlign": "center",
+                                                "color": "white",
+                                                "font-size": "1.0em",
+                                            },
+                                        ),
+                                        dash_table.DataTable(
+                                            id="tabela-dados",
+                                            columns=[
+                                                {"name": col, "id": col}
+                                                for col in df.columns
+                                            ],
+                                            data=df.to_dict("records"),
+                                            style_table={
+                                                "margin": "auto",
+                                                "border": "2px solid black",
+                                                "border-collapse": "collapse",
+                                            },
+                                            style_cell={
+                                                "padding": "5px",
+                                                "backgroundColor": "Grey",
+                                            },
+                                            style_header={
+                                                "backgroundColor": "Black",
+                                                "fontWeight": "bold",
+                                                "color": "White",
+                                            },
+                                            page_size=5,
+                                        ),
+                                    ]
+                                ),
+                                width=6,
+                            )
+                        )
+                    ]
+                ),
+            ],
+            style={"backgroundColor": "#121212"},
         ),
-    ],
-    style={"backgroundColor": "#121212"},
+    ]
 )
 
 
