@@ -8,6 +8,10 @@ import dash_bootstrap_components as dbc
 from charts import bar_data, pie_data, garantias, historia, renda, risco, divida, df
 from dark_mode import colors
 import json
+from dash_bootstrap_templates import ThemeSwitchAIO
+
+url_theme1 = dbc.themes.FLATLY
+url_theme2 = dbc.themes.DARKLY
 
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -150,16 +154,6 @@ app.layout = html.Div(
                         dcc.Graph(
                             id="bar-chart",
                             config={"displayModeBar": False},
-                            figure={
-                                "data": [bar_data],
-                                "layout": {
-                                    "title": "Gráficos de Barras",
-                                    "plot_bgcolor": "#000000",
-                                    "paper_bgcolor": "#121212",
-                                    "height": 400,
-                                    "width": 400,
-                                },
-                            },
                             style={
                                 "color": "white",
                                 "width": "50%",
@@ -170,16 +164,6 @@ app.layout = html.Div(
                         dcc.Graph(
                             id="pizza-chart",
                             config={"displayModeBar": False},
-                            figure={
-                                "data": [pie_data],
-                                "layout": {
-                                    "title": "Gráficos de Pizza",
-                                    "plot_bgcolor": "white",
-                                    "paper_bgcolor": "#121212",
-                                    "height": 400,
-                                    "width": 400,
-                                },
-                            },
                             style={
                                 "color": "white",
                                 "width": "50%",
@@ -307,4 +291,4 @@ def chart_table(filtro_garantias, filtro_historia, filtro_renda):
 
 # App execution
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=8050)
