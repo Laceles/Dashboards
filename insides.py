@@ -83,6 +83,7 @@ app.layout = html.Div(
                                             "width": "150px",
                                             "left": "1px",
                                         },
+                                        multi=True,
                                     ),
                                 ]
                             ),
@@ -112,6 +113,7 @@ app.layout = html.Div(
                                             "width": "150px",
                                             "right": "1px",
                                         },
+                                        multi=True,
                                     ),
                                 ]
                             ),
@@ -141,6 +143,7 @@ app.layout = html.Div(
                                             "width": "150px",
                                             "right": "1px",
                                         },
+                                        multi=True,
                                     ),
                                 ]
                             ),
