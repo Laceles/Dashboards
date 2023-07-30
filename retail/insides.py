@@ -7,12 +7,17 @@ import dash_table
 import dash_bootstrap_components as dbc
 from charts import bar_data, pie_data, garantias, historia, renda, risco, divida, df
 from dark_mode import colors
-import json
 from dash_bootstrap_templates import ThemeSwitchAIO
+import json
+import psycopg2
 
+# from dash_bootstrap_templates import ThemeSwitchAIO
+breakpoint()
+
+template_theme1 = "flatly"
+template_theme2 = "darkly"
 url_theme1 = dbc.themes.FLATLY
 url_theme2 = dbc.themes.DARKLY
-
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = html.Div(
@@ -52,6 +57,10 @@ app.layout = html.Div(
                 "right": "10px",
                 "top": "10px",
             },
+        ),
+        ThemeSwitchAIO(
+            aio_id="theme",
+            themes=[url_theme1, url_theme2],
         ),
         # Linha Dropdowns
         html.Div(

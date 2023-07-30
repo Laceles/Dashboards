@@ -1,4 +1,6 @@
-*.ipynb
+*index.ipynb
 venv/
 *.lock
 *linux_comands.txt
+*.png
+photos/
